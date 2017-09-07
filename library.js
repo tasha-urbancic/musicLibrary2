@@ -89,7 +89,17 @@ var library = {
 
   },
   printSearchResults: function (query) {
-    console.log('none');
+    var aListOfTracks = [];
+    for (var key in library.tracks) {
+      var trackName = library["tracks"][key]['name'];
+      var artistName = library["tracks"][key]['artist'];
+      var albumName = library["tracks"][key]['album'];
+      var mashedTrackInfo = (trackName + artistName + albumName).toLowerCase();
+      if (mashedTrackInfo.search(query.toLowerCase()) !== -1) {
+        aListOfTracks.push(library["tracks"][key]);
+      }
+    }
+    console.log(aListOfTracks);
   }
 };
 
